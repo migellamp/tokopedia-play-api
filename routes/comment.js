@@ -9,6 +9,7 @@ commentRouter.post("/comment", async (req, res) => {
     const timeComment = new Date().toLocaleString();
     const comment = new Comment({
       username: req.body.username,
+      profilePictue: "default",
       comment: req.body.comment,
       timeStamp: timeComment,
       videoId,

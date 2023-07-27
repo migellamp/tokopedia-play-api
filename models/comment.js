@@ -5,6 +5,10 @@ const commentSchema = new mongoose.Schema({
     required: true,
     type: String,
   },
+  profilePictue: {
+    required: true,
+    type: String,
+  },
   comment: {
     required: true,
     type: String,
