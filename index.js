@@ -17,7 +17,7 @@ const Comment = require("./models/comment");
 // const server = http.createServer(app);
 
 const URL = process.env.MONGODB_URI;
-const PORT = process.env.PORT || 3004;
+const PORT = process.env.PORT || 3006;
 mongoose.connect(URL);
 const database = mongoose.connection;
 
@@ -51,7 +51,16 @@ app.use("/api", commentRouter);
 var server = app.listen(PORT, function () {
   console.log("Node app is running on port", PORT);
 });
-var io = require("socket.io")(server);
+var io = require("socket.io")(server, {
+  cors: {
+    methods: ["GET", "POST"],
+  },
+});
+// const io = require("socket.io")(8080, {
+//   cors: {
+//     methods: ["GET", "POST"],
+//   },
+// });
 
 io.on("connection", (socket) => {
   socket.on("disconnect", () => {});
