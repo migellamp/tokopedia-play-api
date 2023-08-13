@@ -7,14 +7,17 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const Comment = require("./models/comment");
 
-const io = require("socket.io")(8080, {
-  cors: {
-    methods: ["GET", "POST"],
-  },
-});
+// const io = require("socket.io")(8080, {
+//   cors: {
+//     methods: ["GET", "POST"],
+//   },
+// });
+
+const io = require("socket.io").listen(server);
 
 const http = require("http");
 const server = http.createServer(app);
+const hostname = "localhost";
 
 const URL = process.env.MONGODB_URI;
 const PORT = process.env.PORT || 3001;
