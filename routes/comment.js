@@ -29,16 +29,16 @@ commentRouter.post("/comment", async (req, res) => {
 commentRouter.get("/comment/:id", async (req, res) => {
   const getId = req.params.id;
   try {
-    const selectedProduct = await Comment.find({ videoId: getId });
-    if (selectedProduct.length === 0) {
-      res.status(404).json({ ListProduct: selectedProduct });
+    const selectedComment = await Comment.find({ videoId: getId });
+    if (selectedComment.length === 0) {
+      res.status(404).json({ ListProduct: selectedComment });
     } else {
       res.header("Access-Control-Allow-Origin", "*");
       res.header(
         "Access-Control-Allow-Headers",
         "Origin, X-Requested-With, Content-Type, Accept"
       );
-      res.status(200).json({ ListProduct: selectedProduct });
+      res.status(200).json({ comment: selectedComment });
     }
   } catch (error) {
     res.status(400).json({ message: error.message });
