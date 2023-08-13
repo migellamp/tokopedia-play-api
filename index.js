@@ -13,11 +13,10 @@ const Comment = require("./models/comment");
 //   },
 // });
 
-const io = require("socket.io").listen(server);
-
 const http = require("http");
 const server = http.createServer(app);
-const hostname = "localhost";
+
+const io = require("socket.io").listen(server);
 
 const URL = process.env.MONGODB_URI;
 const PORT = process.env.PORT || 3001;
