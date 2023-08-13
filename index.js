@@ -13,13 +13,11 @@ const Comment = require("./models/comment");
 //   },
 // });
 
-const http = require("http");
-const server = http.createServer(app);
-
-const io = require("socket.io").listen(server);
+// const http = require("http");
+// const server = http.createServer(app);
 
 const URL = process.env.MONGODB_URI;
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3004;
 mongoose.connect(URL);
 const database = mongoose.connection;
 
@@ -50,6 +48,11 @@ app.use("/api", videoRouter);
 app.use("/api", productRouter);
 app.use("/api", commentRouter);
 
+var server = app.listen(PORT, function () {
+  console.log("Node app is running on port", PORT);
+});
+var io = require("socket.io")(server);
+
 io.on("connection", (socket) => {
   socket.on("disconnect", () => {});
 
@@ -65,8 +68,4 @@ io.on("connection", (socket) => {
       io.emit("message", msg);
     });
   });
-});
-
-server.listen(PORT, () => {
-  console.log(`Listening to port ${PORT}`);
 });
