@@ -17,7 +17,7 @@ const Comment = require("./models/comment");
 // const server = http.createServer(app);
 
 const URL = process.env.MONGODB_URI;
-const PORT = process.env.PORT || 3006;
+const PORT = process.env.PORT || 30009;
 mongoose.connect(URL);
 const database = mongoose.connection;
 
@@ -56,7 +56,6 @@ var io = require("socket.io")(server, {
   cors: {
     methods: ["GET", "POST"],
   },
-  wsEngine: "ws",
 });
 
 io.on("connection", (socket) => {
