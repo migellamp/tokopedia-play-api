@@ -51,16 +51,13 @@ app.use("/api", commentRouter);
 var server = app.listen(PORT, function () {
   console.log("Node app is running on port", PORT);
 });
+
 var io = require("socket.io")(server, {
   cors: {
     methods: ["GET", "POST"],
   },
+  wsEngine: "ws",
 });
-// const io = require("socket.io")(8080, {
-//   cors: {
-//     methods: ["GET", "POST"],
-//   },
-// });
 
 io.on("connection", (socket) => {
   socket.on("disconnect", () => {});
